@@ -28,7 +28,7 @@ bool classzanak::Encrypt(void)
 		
 		// Cteni bytu 
 		lintCount = fread_s(&uchReadBuffer, 1, 1, 1, p_file);
-		if (lintCount > 0)
+		if (lintCount != 0)
 		{
 			// Zasifrovat 
 			uchReadBuffer = uchReadBuffer + 1;
@@ -37,7 +37,7 @@ bool classzanak::Encrypt(void)
 
 			fwrite(&uchReadBuffer, 1, 1, p_file2);
 		}
-	} while (lintCount > 0);
+	} while (lintCount != 0);
 
 	fclose(p_file);
 	fclose(p_file2);
@@ -58,7 +58,7 @@ bool classzanak::Decrypt(void)
 	{
 		// Cteni bytu 
 		lintCount = fread_s(&uchReadBuffer, 1, 1, 1, p_file);
-		if (lintCount > 0)
+		if (lintCount != 0)
 		{
 			// Zasifrovat 
 			uchReadBuffer = uchReadBuffer - 1;
@@ -67,7 +67,7 @@ bool classzanak::Decrypt(void)
 
 			fwrite(&uchReadBuffer, 1, 1, p_file2);
 		}
-	} while (lintCount > 0);
+	} while (lintCount != 0);
 
 	fclose(p_file);
 	fclose(p_file2);
