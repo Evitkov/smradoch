@@ -13,7 +13,7 @@ classzanak::~classzanak(void)
 }
 
 
-bool classzanak::Encrypt(void)
+void classzanak::Encrypt(void)
 {
 	FILE* p_file;
 	FILE* p_file2;
@@ -38,12 +38,12 @@ bool classzanak::Encrypt(void)
 			fwrite(&uchReadBuffer, 1, 1, p_file2);
 		}
 	} while (lintCount != 0);
-
+	//zavøít soubory
 	fclose(p_file);
 	fclose(p_file2);
-	return false;
+	
 }
-bool classzanak::Decrypt(void)
+void classzanak::Decrypt(void)
 {
 	FILE* p_file;
 	FILE* p_file2;
@@ -68,10 +68,10 @@ bool classzanak::Decrypt(void)
 			fwrite(&uchReadBuffer, 1, 1, p_file2);
 		}
 	} while (lintCount != 0);
-
+	//zavøít soubory
 	fclose(p_file);
 	fclose(p_file2);
-	return false;
+	
 }
 
 

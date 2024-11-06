@@ -8,7 +8,7 @@ public:
 	classzanak(void);       //konstruktor
 	~classzanak(void);      //destruktor
 
-	bool Encrypt(void);                  //zašifrovat
-	bool Decrypt(void);                 //dešifrovat
+	void Encrypt(void);                  //zašifrovat
+	void Decrypt(void);                 //dešifrovat
 
 };

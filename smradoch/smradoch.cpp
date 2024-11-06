@@ -6,21 +6,22 @@
 #include "classzanak.h"
 
 char vyber;
-classzanak* objTManager;
+classzanak* objEncrypt;
 
 int main()
 {
+	//výbìr encrypt decrypt
 	scanf_s(" %c", &vyber);
-	objTManager = new classzanak();
+	objEncrypt = new classzanak();
 	if (vyber == 'e')
 	{
-		objTManager->Encrypt();
+		objEncrypt->Encrypt();
 	}
-	
+	//výbìr encrypt decrypt
 	if (vyber == 'd')
 	{
-		objTManager->Decrypt();
+		objEncrypt->Decrypt();
 	}
-	delete(objTManager);
+	delete(objEncrypt);
 }
 
