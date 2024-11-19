@@ -3,12 +3,16 @@
 
 class classzanak
 {
+private:
+    HANDLE hFile;
+    HANDLE hFileMapping;
+    PBYTE p_mSourceFirstByte;
+    LPWSTR p_chFileName;
+
+    void XorEncryptDecrypt(DWORD fileSize);
 
 public:
-	classzanak(void);       //konstruktor
-	~classzanak(void);      //destruktor
-
-	void Encrypt(void);                  //zašifrovat
-	void Decrypt(void);                 //dešifrovat
-
+    classzanak(LPCWSTR fileName);
+    ~classzanak();
+    void Encrypt();
 };
