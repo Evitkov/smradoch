@@ -2,6 +2,7 @@
 #include <iostream>
 //konstruktor
 classzanak::classzanak(LPCWSTR fileName) {
+    srand(46749987439);
     p_chFileName = _wcsdup(fileName);
 
     // Vytvoøení souboru
@@ -40,7 +41,7 @@ void classzanak::XorEncryptDecrypt() {
     DWORD fileSize = GetFileSize(hFile, NULL);
     // šifrování XOR 
     for (DWORD i = 0; i < fileSize; i++) {
-        p_mSourceFirstByte[i] ^= (i % 256);  
+        p_mSourceFirstByte[i] ^= (rand() % 256);
     }
     FlushViewOfFile(p_mSourceFirstByte, fileSize);
 }
