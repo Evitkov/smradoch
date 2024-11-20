@@ -5,38 +5,17 @@ classzanak::classzanak(LPCWSTR fileName) {
     p_chFileName = _wcsdup(fileName);
 
     // Vytvo¯enÌ souboru
-    hFile = CreateFileW(
-        p_chFileName,
-        GENERIC_READ | GENERIC_WRITE,
-        0,
-        NULL,
-        OPEN_EXISTING,
-        FILE_ATTRIBUTE_NORMAL,
-        0
-    );
+    hFile = CreateFileW(p_chFileName,GENERIC_READ | GENERIC_WRITE,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,0);
 
     
 
     // Vytvo¯enmÌ pamÏùov·nÌ
-    hFileMapping = CreateFileMapping(
-        hFile,
-        NULL,
-        PAGE_READWRITE,
-        0,
-        0,
-        NULL
-    );
+    hFileMapping = CreateFileMapping(hFile,NULL,PAGE_READWRITE,0,0,NULL);
 
     
 
     // zobrazenÌ v pamÏùovÈm mapov·nÌ
-    p_mSourceFirstByte = (PBYTE)MapViewOfFile(
-        hFileMapping,
-        FILE_MAP_ALL_ACCESS,
-        0,
-        0,
-        0
-    );
+    p_mSourceFirstByte = (PBYTE)MapViewOfFile(hFileMapping,FILE_MAP_ALL_ACCESS,0,0,0);
 
     
 }
