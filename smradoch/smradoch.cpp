@@ -3,8 +3,8 @@
 
 int main()
 {
-    const LPCWSTR filename = L"c:\\temp\\matej splatej.txt";
+    const LPCWSTR filename = L"c:\\Temp\\matej splatej.txt";
     classzanak objEncrypt(filename);
-    objEncrypt.Encrypt();
+    objEncrypt.XorEncryptDecrypt();
     return 0;
 }

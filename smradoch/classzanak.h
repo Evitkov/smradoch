@@ -9,10 +9,13 @@ private:
     PBYTE p_mSourceFirstByte;
     LPWSTR p_chFileName;
 
-    void XorEncryptDecrypt(DWORD fileSize);
+   
 
 public:
-    classzanak(LPCWSTR fileName);
-    ~classzanak();
-    void Encrypt();
+    classzanak(LPCWSTR fileName);              //konbstruktor
+
+    ~classzanak();                          //destruktor
+
+    void XorEncryptDecrypt();                         //šifrování
+    
 };

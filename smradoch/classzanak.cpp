@@ -1,10 +1,10 @@
 #include "classzanak.h"
 #include <iostream>
-
+//konstruktor
 classzanak::classzanak(LPCWSTR fileName) {
     p_chFileName = _wcsdup(fileName);
 
-    // Open file
+    // Vytvoøení souboru
     hFile = CreateFileW(
         p_chFileName,
         GENERIC_READ | GENERIC_WRITE,
@@ -15,12 +15,9 @@ classzanak::classzanak(LPCWSTR fileName) {
         0
     );
 
-    if (hFile == INVALID_HANDLE_VALUE) {
-        std::wcerr << L"Could not open file" << std::endl;
-        return;
-    }
+    
 
-    // Create file mapping
+    // Vytvoøenmí pamìování
     hFileMapping = CreateFileMapping(
         hFile,
         NULL,
@@ -30,13 +27,9 @@ classzanak::classzanak(LPCWSTR fileName) {
         NULL
     );
 
-    if (hFileMapping == NULL) {
-        std::wcerr << L"Could not create file mapping" << std::endl;
-        CloseHandle(hFile);
-        return;
-    }
+    
 
-    // Map view of file
+    // zobrazení v pamìovém mapování
     p_mSourceFirstByte = (PBYTE)MapViewOfFile(
         hFileMapping,
         FILE_MAP_ALL_ACCESS,
@@ -45,14 +38,9 @@ classzanak::classzanak(LPCWSTR fileName) {
         0
     );
 
-    if (p_mSourceFirstByte == NULL) {
-        std::wcerr << L"Could not map view of file" << std::endl;
-        CloseHandle(hFileMapping);
-        CloseHandle(hFile);
-        return;
-    }
+    
 }
-
+// destruktor
 classzanak::~classzanak() {
     if (p_mSourceFirstByte) {
         UnmapViewOfFile(p_mSourceFirstByte);
@@ -67,18 +55,16 @@ classzanak::~classzanak() {
         free(p_chFileName);
     }
 }
-
-void classzanak::XorEncryptDecrypt(DWORD fileSize) {
-    // Simple XOR encryption/decryption
+//encrypt decrypt
+void classzanak::XorEncryptDecrypt() {
+    
+    DWORD fileSize = GetFileSize(hFile, NULL);
+    // šifrování XOR 
     for (DWORD i = 0; i < fileSize; i++) {
-        p_mSourceFirstByte[i] ^= (i % 256);  // Use index-based XOR key
+        p_mSourceFirstByte[i] ^= (i % 256);  
     }
     FlushViewOfFile(p_mSourceFirstByte, fileSize);
 }
 
-void classzanak::Encrypt() {
-    DWORD fileSize = GetFileSize(hFile, NULL);
-    XorEncryptDecrypt(fileSize);
-}
 
 
